@@ -8,6 +8,9 @@ function TodoProvider(props) {
 
   const [searchValue, setSearchValue] = React.useState("");
 
+  const [openModal, setOpenModal] = React.useState(false);
+  
+
   const completedItem = item.filter((todo) => !!todo.completed).length;
   const totalItem = item.length;
 
@@ -30,6 +33,18 @@ function TodoProvider(props) {
     saveItem(newItem);
   };
 
+  const addTodo = (text) => {
+    if(!text){
+      return
+    }
+    const newItem = [...item];
+    newItem.push({
+      completed: false,
+      text
+    })
+    saveItem(newItem);
+  };
+
   const deleteTodo = (text) => {
     const todoIndex = item.findIndex((todo) => todo.text === text);
     const newItem = [...item];
@@ -42,11 +57,14 @@ function TodoProvider(props) {
         dataStatus,
         totalItem,
         completedItem,
+        addTodo,
         searchValue,
         setSearchValue,
         searchedItem,
         completeTodo,
         deleteTodo,
+        openModal,
+        setOpenModal,
       }}
     >
       {props.children}

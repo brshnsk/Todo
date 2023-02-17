@@ -1,4 +1,4 @@
-button {
+.CreateTodoButton {
   background-color: #9fd3c7;
   border: none;
   border-radius: 50%;
@@ -14,8 +14,9 @@ button {
   align-items: center;
   height: 64px;
   width: 64px;
+  z-index: 1;
 }
 
-button:hover{
+.CreateTodoButton:hover{
   background-color: #91ca62;
 }
