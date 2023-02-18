@@ -11,9 +11,10 @@ function TodoSearch() {
   return (
     <input
       className="TodoSearch"
-      placeholder="Test"
+      placeholder="Buscar en mi lista..."
       value={searchValue}
       onChange={onSearchValueChange}
+      
     />
   );
 }

@@ -10,6 +10,9 @@ import { EmptyTodo } from "../EmptyTodo/EmptyTodo";
 import { TodosError } from "../TodosError/TodosError";
 import { TodosLoading } from "../TodosLoading/TodosLoading";
 import { TodoForm } from "../TodoForm/TodoForm";
+import { DeleteTodoButton } from "../DeleteTodosButton/DeleteTodoButton";
+import { ConfirmDeleteAll } from "../ConfirmDeleteAll/ConfirmDeleteAll";
+import { ModalDeleteAll } from "../Modal/ModalDeleteAll";
 
 function AppUI() {
   const {
@@ -19,6 +22,9 @@ function AppUI() {
     deleteTodo,
     openModal,
     setOpenModal,
+    deleteAll,
+    openConfirmDeleteModal,
+    setOpenConfirmDeleteModal,
   } = React.useContext(TodoContext);
 
   return (
@@ -38,6 +44,7 @@ function AppUI() {
             completed={todo.completed}
             onComplete={() => completeTodo(todo.text)}
             onDelete={() => deleteTodo(todo.text)}
+            onDeleteAll={() => deleteAll()}
           />
         ))}
       </TodoList>
@@ -47,7 +54,15 @@ function AppUI() {
           <TodoForm />
         </Modal>
       )}
+
+      {openConfirmDeleteModal && (
+        <ModalDeleteAll>
+          <ConfirmDeleteAll />
+        </ModalDeleteAll>
+      )}
+
       <CreateTodoButton setOpenModal={setOpenModal} />
+      <DeleteTodoButton setOpenConfirmDeleteModal={setOpenConfirmDeleteModal} />
     </React.Fragment>
   );
 }

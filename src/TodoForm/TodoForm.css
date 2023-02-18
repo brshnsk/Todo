@@ -57,7 +57,7 @@ textarea:focus {
   height: 48px;
   border-radius: 2px;
   border: none;
-  font-family: "Montserrat";
+  font-family: 'Roboto', sans-serif;
 }
 
 .TodoForm-button-add {

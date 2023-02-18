@@ -15,4 +15,5 @@
 .TodoSearch::placeholder{
   color: #ececec;
   font-weight: bold;
+  opacity: 50%;
 }

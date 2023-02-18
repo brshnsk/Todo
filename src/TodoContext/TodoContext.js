@@ -9,7 +9,9 @@ function TodoProvider(props) {
   const [searchValue, setSearchValue] = React.useState("");
 
   const [openModal, setOpenModal] = React.useState(false);
-  
+
+  const [openConfirmDeleteModal, setOpenConfirmDeleteModal] =
+    React.useState(false);
 
   const completedItem = item.filter((todo) => !!todo.completed).length;
   const totalItem = item.length;
@@ -34,14 +36,14 @@ function TodoProvider(props) {
   };
 
   const addTodo = (text) => {
-    if(!text){
-      return
+    if (!text) {
+      return;
     }
     const newItem = [...item];
     newItem.push({
       completed: false,
-      text
-    })
+      text,
+    });
     saveItem(newItem);
   };
 
@@ -50,6 +52,10 @@ function TodoProvider(props) {
     const newItem = [...item];
     newItem.splice(todoIndex, 1);
     saveItem(newItem);
+  };
+
+  const deleteAll = () => {
+    window.localStorage.clear();
   };
   return (
     <TodoContext.Provider
@@ -65,6 +71,9 @@ function TodoProvider(props) {
         deleteTodo,
         openModal,
         setOpenModal,
+        deleteAll,
+        openConfirmDeleteModal,
+        setOpenConfirmDeleteModal,
       }}
     >
       {props.children}
@@ -72,6 +81,4 @@ function TodoProvider(props) {
   );
 }
 
-
-export {TodoContext, TodoProvider};
-
+export { TodoContext, TodoProvider };
