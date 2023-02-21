@@ -6,9 +6,15 @@ function TodoList(props) {
     <section>
       {props.error && props.onError()}
       {props.loading && props.onLoading()}
-      {!props.loading && !props.searchedItem?.length && props.onEmptyTodo()}
-      {props.searchedItem.map(props.render)}
-      <ul className="TodoList">{props.children}</ul>
+
+      {!props.loading && !props.totalItem && props.onEmptyTodo()}
+
+      {!!props.totalItem &&
+        !props.searchedItem.length &&
+        props.onEmptySearchResults(props.searchText)}
+      <ul className="TodoList">
+        {props.searchedItem.map(props.render || props.children)}
+      </ul>
     </section>
   );
 }
