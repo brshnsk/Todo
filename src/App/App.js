@@ -1,4 +1,5 @@
 import React from "react";
+import "./App.css"
 import { useTodos } from "./useTodos";
 import { TodoCounter } from "../TodoCounter/TodoCounter";
 import { TodoSearch } from "../TodoSearch/TodoSearch";
@@ -57,7 +58,7 @@ function App() {
         onLoading={() => <TodosLoading />}
         onEmptyTodo={() => <EmptyTodo />}
         onEmptySearchResults={(searchText) => (
-          <p>No hay resultados para {searchText}</p>
+          <p className="Test">No hay resultados para "{searchText}"</p>
         )}
         // render={(todo) => (
         //   <TodoItem
