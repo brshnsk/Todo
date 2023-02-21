@@ -5,3 +5,8 @@ body {
   color: #ececec;
 }
 
+.white-mode {
+  background-color: white;
+  color: black;
+}
+

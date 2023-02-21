@@ -1,19 +1,8 @@
 import React from "react";
-import { TodoContext } from "../TodoContext/TodoContext";
 import "./ConfirmDeleteAll.css"
 
-function ConfirmDeleteAll() {
-  const { openConfirmDeleteModal, setOpenConfirmDeleteModal } =
-    React.useContext(TodoContext);
-
-  const onCancel = () => {
-    setOpenConfirmDeleteModal(false);
-  };
-  const onSubmit = (event) => {
-    event.preventDefault();
-    window.localStorage.clear();
-    setOpenConfirmDeleteModal(false);
-  };
+function ConfirmDeleteAll({onSubmit, onCancel}) {
+ 
   return (
     <form onSubmit={onSubmit}>
       <label>Eliminar todos los Todos?</label>

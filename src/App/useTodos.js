@@ -1,9 +1,7 @@
 import React from "react";
 import { useLocalStorage } from "./useLocalStorage";
 
-const TodoContext = React.createContext();
-
-function TodoProvider(props) {
+function useTodos() {
   const { item, saveItem, dataStatus } = useLocalStorage("Item_V1", []);
 
   const [searchValue, setSearchValue] = React.useState("");
@@ -54,31 +52,39 @@ function TodoProvider(props) {
     saveItem(newItem);
   };
 
+  // DeleteAllButton
   const deleteAll = () => {
     window.localStorage.clear();
   };
-  return (
-    <TodoContext.Provider
-      value={{
-        dataStatus,
-        totalItem,
-        completedItem,
-        addTodo,
-        searchValue,
-        setSearchValue,
-        searchedItem,
-        completeTodo,
-        deleteTodo,
-        openModal,
-        setOpenModal,
-        deleteAll,
-        openConfirmDeleteModal,
-        setOpenConfirmDeleteModal,
-      }}
-    >
-      {props.children}
-    </TodoContext.Provider>
-  );
+
+  const onCancel = () => {
+    setOpenConfirmDeleteModal(false);
+  };
+  const onSubmit = (event) => {
+    event.preventDefault();
+    window.localStorage.clear();
+    setOpenConfirmDeleteModal(false);
+  };
+  //
+  
+  return {
+    dataStatus,
+    totalItem,
+    completedItem,
+    addTodo,
+    searchValue,
+    setSearchValue,
+    searchedItem,
+    completeTodo,
+    deleteTodo,
+    openModal,
+    setOpenModal,
+    deleteAll,
+    openConfirmDeleteModal,
+    setOpenConfirmDeleteModal,
+    onCancel,
+    onSubmit
+  };
 }
 
-export { TodoContext, TodoProvider };
+export { useTodos };
