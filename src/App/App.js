@@ -37,9 +37,15 @@ function App() {
 
   return (
     <React.Fragment>
-      <TodoHeader>
-        <TodoCounter totalItem={totalItem} completedItem={completedItem} />
-        <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
+      <TodoHeader loading={dataStatus.loading}>
+        <TodoCounter 
+          totalItem={totalItem} 
+          completedItem={completedItem}
+          />
+        <TodoSearch 
+          searchValue={searchValue} 
+          setSearchValue={setSearchValue}
+          />
       </TodoHeader>
       <TodoList
         searchText={searchValue}
