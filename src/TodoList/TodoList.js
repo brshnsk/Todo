@@ -13,7 +13,7 @@ function TodoList(props) {
         !props.searchedItem.length &&
         props.onEmptySearchResults(props.searchText)}
       <ul className="TodoList">
-        {props.searchedItem.map(props.render || props.children)}
+        {!props.loading && props.searchedItem.map(props.render || props.children)}
       </ul>
     </section>
   );

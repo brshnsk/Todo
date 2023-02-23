@@ -15,6 +15,7 @@ import { DeleteTodoButton } from "../DeleteTodosButton/DeleteTodoButton";
 import { ConfirmDeleteAll } from "../ConfirmDeleteAll/ConfirmDeleteAll";
 import { ModalDeleteAll } from "../Modal/ModalDeleteAll";
 import { TodoHeader } from "../TodoHeader/TodoHeader";
+import { ChangeAlertWithStorageListener } from "../ChangeAlert/ChangeAlert";
 
 function App() {
   const {
@@ -34,6 +35,7 @@ function App() {
     addTodo,
     onCancel,
     onSubmit,
+    synchronizedTodos
   } = useTodos();
 
   return (
@@ -97,6 +99,10 @@ function App() {
 
       <CreateTodoButton setOpenModal={setOpenModal} />
       <DeleteTodoButton setOpenConfirmDeleteModal={setOpenConfirmDeleteModal} />
+
+      <ChangeAlertWithStorageListener
+        synchronize={synchronizedTodos}
+      />
     </React.Fragment>
   );
 }

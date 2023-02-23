@@ -2,7 +2,7 @@ import React from "react";
 import { useLocalStorage } from "./useLocalStorage";
 
 function useTodos() {
-  const { item, saveItem, dataStatus } = useLocalStorage("Item_V1", []);
+  const { item, saveItem, dataStatus, synchronizedItem: synchronizedTodos } = useLocalStorage("Item_V1", []);
 
   const [searchValue, setSearchValue] = React.useState("");
 
@@ -62,6 +62,7 @@ function useTodos() {
   };
   const onSubmit = (event) => {
     event.preventDefault();
+    synchronizedTodos()
     window.localStorage.clear();
     setOpenConfirmDeleteModal(false);
   };
@@ -83,7 +84,8 @@ function useTodos() {
     openConfirmDeleteModal,
     setOpenConfirmDeleteModal,
     onCancel,
-    onSubmit
+    onSubmit,
+    synchronizedTodos
   };
 }
 
